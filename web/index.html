@@ -3,71 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina de Búsqueda</title>
+    <title>Gestión de Pedidos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Barra Desplegable -->
-        <nav class="navbar">
-            <div class="dropdown">
-                <button class="dropbtn">Opciones</button>
-                <div class="dropdown-content">
-                    <a href="#">Pedidos</a>
-                    <a href="#">Reportes</a>
-                </div>
-            </div>
-        </nav>
 
-        <!-- Buscador -->
-        <div class="search-container">
-            <h2>Buscador de Pedidos</h2>
-            <form id="search-form">
-                <label for="area">Área:</label>
-                <input type="text" id="area" name="area" placeholder="Ingrese área">
+    <!-- Barra de navegación con pestañas -->
+    <nav class="navbar">
+        <button class="tab-button active" data-tab="pedidos">Lista de Pedidos</button>
+        <button class="tab-button" data-tab="reportes">Reportes</button>
+        <button class="tab-button" data-tab="configuracion">Configuración</button>
+    </nav>
 
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ingrese nombre">
-
-                <label for="fecha-desde">Fecha Desde:</label>
-                <input type="date" id="fecha-desde" name="fecha-desde">
-
-                <label for="fecha-hasta">Fecha Hasta:</label>
-                <input type="date" id="fecha-hasta" name="fecha-hasta">
-
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
-
-        <!-- 🔽 FILTRO DE ESTADO 🔽 -->
-        <div class="filter-container">
-            <label for="estado-envios">Filtrar por Estado:</label>
-            <select id="estado-envios">
-                <option value="paid">Pagado</option>
-                <option value="shipped">Enviado</option>
-                <option value="delivered">Entregado</option>
-            </select>
-            <button onclick="filtrarEnvios()">Filtrar</button>
-        </div>
-
-        <!-- 🔽 TABLA DE RESULTADOS 🔽 -->
-        <div class="table-container">
-            <h2>Lista de Pedidos</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>ID Pedido</th>
-                        <th>Comprador</th>
-                        <th>ID Envío</th>
-                        <th>Estado</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-envios"></tbody>
-            </table>
-        </div>
+    <!-- Contenido de las pestañas -->
+    <div class="tab-content active" id="pedidos">
+        <h2>Lista de Pedidos</h2>
+        <select id="estado-envios">
+            <option value="">Todos</option>
+            <option value="paid">Pagados</option>
+            <option value="delivered">Entregados</option>
+            <option value="cancelled">Cancelados</option>
+        </select>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Comprador</th>
+                    <th>ID Envío</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-envios">
+                <tr><td colspan="5">Cargando pedidos...</td></tr>
+            </tbody>
+        </table>
     </div>
 
-    <script type="module" src="js/main.js"></script>
+    <div class="tab-content" id="reportes">
+        <h2>Reportes</h2>
+        <p>Aquí irán los reportes generados.</p>
+    </div>
+
+    <div class="tab-content" id="configuracion">
+        <h2>Configuración</h2>
+        <p>Aquí puedes configurar la aplicación.</p>
+    </div>
+
+    <script src="js/tabs.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
