@@ -38,8 +38,36 @@
                 <button type="submit">Buscar</button>
             </form>
         </div>
+
+        <!-- 🔽 FILTRO DE ESTADO 🔽 -->
+        <div class="filter-container">
+            <label for="estado-envios">Filtrar por Estado:</label>
+            <select id="estado-envios">
+                <option value="paid">Pagado</option>
+                <option value="shipped">Enviado</option>
+                <option value="delivered">Entregado</option>
+            </select>
+            <button onclick="filtrarEnvios()">Filtrar</button>
+        </div>
+
+        <!-- 🔽 TABLA DE RESULTADOS 🔽 -->
+        <div class="table-container">
+            <h2>Lista de Pedidos</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID Pedido</th>
+                        <th>Comprador</th>
+                        <th>ID Envío</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-envios"></tbody>
+            </table>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
