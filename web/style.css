@@ -11,15 +11,16 @@ body {
     display: flex;
     background: #333;
     padding: 10px;
+    justify-content: center;
 }
 
 .navbar button {
-    flex: 1;
     background: #444;
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
+    margin: 0 5px;
 }
 
 .navbar button.active {
@@ -30,23 +31,27 @@ body {
 .tab-content {
     display: none;
     padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .tab-content.active {
     display: block;
 }
 
-/* Tabla responsiva */
-table {
-    width: 100%;
+/* Estilos de la tabla sin bordes y ancho ajustado */
+#pedidos table {
+    width: 100%; /* Ancho completo de la pantalla */
+    margin: 0 auto; /* Centrado de la tabla */
     border-collapse: collapse;
-    margin-top: 10px;
+    table-layout: fixed; /* Asegura que las celdas tengan el mismo tamaño */
 }
 
+/* Celdas de la tabla */
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: center;
+    word-wrap: break-word;
 }
 
 th {
@@ -54,9 +59,29 @@ th {
 }
 
 /* Diseño responsivo */
-@media (max-width: 600px) {
-    table, th, td {
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    table {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    table {
+        font-size: 12px; /* Reducir el tamaño de fuente en pantallas más pequeñas */
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
     }
 
     .navbar {
