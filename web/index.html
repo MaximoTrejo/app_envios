@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Búsqueda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra Desplegable -->
+        <nav class="navbar">
+            <div class="dropdown">
+                <button class="dropbtn">Opciones</button>
+                <div class="dropdown-content">
+                    <a href="#">Pedidos</a>
+                    <a href="#">Reportes</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Buscador -->
+        <div class="search-container">
+            <h2>Buscador de Pedidos</h2>
+            <form id="search-form">
+                <label for="area">Área:</label>
+                <input type="text" id="area" name="area" placeholder="Ingrese área">
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingrese nombre">
+
+                <label for="fecha-desde">Fecha Desde:</label>
+                <input type="date" id="fecha-desde" name="fecha-desde">
+
+                <label for="fecha-hasta">Fecha Hasta:</label>
+                <input type="date" id="fecha-hasta" name="fecha-hasta">
+
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
