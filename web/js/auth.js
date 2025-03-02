@@ -1,13 +1,13 @@
+// auth.js
+
 export async function obtenerToken() {
     const urlParams = new URLSearchParams(window.location.search);
     const authCode = urlParams.get('code');
 
     if (!authCode) {
-        console.log("No se recibió código de autorización.");
+        console.log("No se recibió el código de autorización.");
         return null;
     }
-
-    console.log("Código de autorización recibido:", authCode);
 
     const data = {
         client_id: '5174586942693408',
@@ -20,16 +20,20 @@ export async function obtenerToken() {
     try {
         const response = await fetch('https://api.mercadolibre.com/oauth/token', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams(data)
         });
 
         const result = await response.json();
-        return result.access_token;
+
+        if (response.ok) {
+            return result.access_token;
+        } else {
+            console.error("Error al obtener el token:", result);
+            return null;
+        }
     } catch (error) {
-        console.error("Error obteniendo el token:", error);
+        console.error("Error al hacer la solicitud:", error);
         return null;
     }
 }

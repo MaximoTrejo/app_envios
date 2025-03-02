@@ -1,5 +1,12 @@
+// main.js
+import { obtenerToken } from './auth.js';
+import { obtenerEnvios } from './api.js';
+import { mostrarEnviosEnTabla } from './ui.js';
+
 document.addEventListener("DOMContentLoaded", async function () {
+    console.log("Obteniendo token...");
     const accessToken = await obtenerToken();
+    console.log("Token recibido:", accessToken);
 
     if (!accessToken) {
         console.log("No se pudo obtener el token de acceso.");
@@ -9,18 +16,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Asignar el evento para filtrar envíos
     document.getElementById("estado-envios").addEventListener("change", async function () {
         const estadoSeleccionado = this.value;
-
-        if (!estadoSeleccionado) {
-            console.log("Por favor, selecciona un estado de envío.");
-            return;
-        }
-
         const envios = await obtenerEnvios(accessToken, estadoSeleccionado);
-
-        if (envios && envios.length > 0) {
-            mostrarEnviosEnTabla(envios);
-        } else {
-            console.log("No se encontraron envíos para el estado seleccionado.");
-        }
+        mostrarEnviosEnTabla(envios);
     });
 });
