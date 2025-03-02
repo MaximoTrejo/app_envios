@@ -1,5 +1,4 @@
 // auth.js
-
 export async function obtenerToken() {
     const urlParams = new URLSearchParams(window.location.search);
     const authCode = urlParams.get('code');
