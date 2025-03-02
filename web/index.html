@@ -18,12 +18,16 @@
     <!-- Contenido de las pestañas -->
     <div class="tab-content active" id="pedidos">
         <h2>Lista de Pedidos</h2>
+        
+        <!-- Filtro de estado de los envíos -->
         <select id="estado-envios">
             <option value="">Todos</option>
             <option value="paid">Pagados</option>
             <option value="delivered">Entregados</option>
             <option value="cancelled">Cancelados</option>
         </select>
+        
+        <!-- Tabla de envíos -->
         <table>
             <thead>
                 <tr>
@@ -50,6 +54,7 @@
         <p>Aquí puedes configurar la aplicación.</p>
     </div>
 
+    <!-- Archivos JavaScript -->
     <script src="js/tabs.js"></script>
     <script src="js/main.js"></script>
 </body>
