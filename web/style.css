@@ -39,10 +39,16 @@ body {
     display: block;
 }
 
-/* Estilos de la tabla sin bordes y ancho ajustado */
+/* Contenedor de la tabla para centrarla */
+.table-container {
+    width: 100%;
+    max-width: 1200px; /* Limita el tamaño máximo de la tabla en pantallas grandes */
+    margin: 0 auto; /* Centra la tabla */
+}
+
+/* Estilos de la tabla */
 #pedidos table {
     width: 100%; /* Ancho completo de la pantalla */
-    margin: 0 auto; /* Centrado de la tabla */
     border-collapse: collapse;
     table-layout: fixed; /* Asegura que las celdas tengan el mismo tamaño */
 }
@@ -52,6 +58,7 @@ th, td {
     padding: 10px;
     text-align: center;
     word-wrap: break-word;
+    border: 1px solid #ddd; /* Bordes visibles en las celdas */
 }
 
 th {
@@ -72,6 +79,10 @@ th {
     table {
         font-size: 14px;
     }
+
+    .table-container {
+        padding: 0 10px; /* Añade un pequeño padding para no pegar la tabla al borde */
+    }
 }
 
 @media (max-width: 600px) {
@@ -90,5 +101,9 @@ th {
 
     .navbar button {
         width: 100%;
+    }
+
+    .table-container {
+        padding: 0 10px; /* Ajuste del padding en pantallas más pequeñas */
     }
 }
