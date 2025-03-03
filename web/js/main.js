@@ -1,5 +1,5 @@
 import { obtenerToken, obtenerNuevoToken } from './auth.js';  // Asegúrate de importar las funciones necesarias
-import { obtenerOrdenPorId, realizarSolicitudConToken } from './api.js';  // Usar la función que maneja el token automáticamente
+import { obtenerOrdenPorId} from './api.js';  // Usar la función que maneja el token automáticamente
 import UI from './ui.js';  // Importar la clase UI
 
 document.addEventListener("DOMContentLoaded", async function () {
