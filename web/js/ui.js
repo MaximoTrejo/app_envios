@@ -48,7 +48,7 @@ class UI {
             celdaComprador.textContent = `${envio.buyer.first_name} ${envio.buyer.last_name}`;
 
             const celdaArticulo = document.createElement('td');
-            celdaArticulo.textContent = envio.item.title || "Sin título";
+            celdaArticulo.textContent = envio.order_items?.[0]?.item?.title || "Sin título";
 
             const celdaIdEnvio = document.createElement('td');
             celdaIdEnvio.textContent = envio.shipping.id;
