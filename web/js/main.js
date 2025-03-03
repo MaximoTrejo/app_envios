@@ -12,8 +12,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         return;
     }
 
-    // Asignar el evento para el botón de búsqueda
-    const buscarButton = document.getElementById("tabla-orden");
+    // 🔹 Corregir el botón de búsqueda
+    const buscarButton = document.getElementById("buscar-envio"); // ✅ Ahora obtiene el botón correcto
+
     buscarButton.addEventListener("click", async function () {
         const orden_id = document.getElementById("buscador-codigo").value;
         
