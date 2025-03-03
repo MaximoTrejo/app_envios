@@ -41,8 +41,9 @@ export async function obtenerOrdenPorId(accessToken, orden_id) {
         const data = await response.json();
         console.log("Respuesta del servidor:", data);
 
-        if (data && data.results && data.results.length > 0) {
-            return data.results[0]; 
+        // Cambia la validación para verificar si data es un objeto válido con la propiedad id
+        if (data && data.id) {
+            return data; // Retorna los datos directamente
         }
         return null;
     } catch (error) {
