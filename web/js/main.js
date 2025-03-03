@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         // Llamamos a la función que obtendrá los datos del envío
         const envio = await obtenerOrdenPorId(accessToken, orden_id);
         
+        console.log("Ver envio", envio);
+
         if (envio) {
             UI.mostrarOrdenEnTabla([envio]); // Usar el método estático de la clase UI
         } else {
