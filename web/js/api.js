@@ -1,5 +1,7 @@
 export async function obtenerEnviosPorId(accessToken, shipmentId) {
     const url = `http://localhost:666/Envios/shipments?shipment_id=${shipmentId}&access_token=${accessToken}`;
+    
+    console.log("URL de la petición:", url);
 
     try {
         const response = await fetch(url, {
@@ -10,11 +12,12 @@ export async function obtenerEnviosPorId(accessToken, shipmentId) {
         });
 
         const data = await response.json();
-        
+        console.log("Respuesta del servidor:", data);
+
         if (data && data.results && data.results.length > 0) {
-            return data.results[0]; // Retorna el primer resultado (suponiendo que siempre viene un solo envío)
+            return data.results[0]; 
         }
-        return null; // Si no se encuentra el envío
+        return null;
     } catch (error) {
         console.error("Error obteniendo el envío:", error);
         return null;
