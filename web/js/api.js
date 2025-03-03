@@ -1,30 +1,3 @@
-export async function obtenerEnviosPorId(accessToken, shipmentId) {
-    const url = `http://localhost:666/Envios/shipments?shipment_id=${shipmentId}&access_token=${accessToken}`;
-    
-    console.log("URL de la petición:", url);
-
-    try {
-        const response = await fetch(url, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            }
-        });
-
-        const data = await response.json();
-        console.log("Respuesta del servidor:", data);
-
-        if (data && data.results && data.results.length > 0) {
-            return data.results[0]; 
-        }
-        return null;
-    } catch (error) {
-        console.error("Error obteniendo el envío:", error);
-        return null;
-    }
-}
-
-
 export async function obtenerOrdenPorId(accessToken, orden_id) {
     const url = `http://localhost:666/ordenes/orders?orden_id=${orden_id}&access_token=${accessToken}`;
     
@@ -53,8 +26,7 @@ export async function obtenerOrdenPorId(accessToken, orden_id) {
 }
 
 
-
-// api.js
+// Función que maneja la solicitud con el token, si está expirado obtiene uno nuevo
 export async function realizarSolicitudConToken(accessToken, url, options) {
     try {
         const response = await fetch(url, {
@@ -91,8 +63,6 @@ export async function realizarSolicitudConToken(accessToken, url, options) {
 
 // Función para obtener un nuevo token usando el código de autorización
 export async function obtenerNuevoToken() {
-    // Aquí necesitarías tener algún flujo para obtener un nuevo token, como el que ya has implementado
-    // Podrías redirigir a la página de autenticación si es necesario
     const code = 'auth_code_obtenido_de_otra_manera'; // Ejemplo, sustituir por el código real
     const response = await fetch("http://localhost:666/token/obtenerToken", {
         method: "POST",
@@ -109,4 +79,3 @@ export async function obtenerNuevoToken() {
         throw new Error("No se pudo obtener un nuevo token.");
     }
 }
-

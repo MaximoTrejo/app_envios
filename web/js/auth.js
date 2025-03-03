@@ -1,4 +1,3 @@
-// auth.js
 export async function obtenerToken() {
     // Primero verificamos si ya existe un token en localStorage
     let token = localStorage.getItem('access_token');

@@ -3,14 +3,14 @@ import { realizarSolicitudConToken } from './api.js';  // Usar la función que m
 import UI from './ui.js';  // Importar la clase UI
 
 document.addEventListener("DOMContentLoaded", async function () {
-    console.log("Obteniendo token...");
-
     // Intentamos obtener el token desde localStorage
-    const accessToken = await obtenerToken();
+    let accessToken = await obtenerToken();
 
+    // Si no hay token, lo obtenemos y lo guardamos
     if (!accessToken) {
-        console.log("No se pudo obtener el token de acceso.");
-        return;
+        console.log("Token no encontrado, obteniendo uno nuevo...");
+        accessToken = await obtenerNuevoToken();
+        localStorage.setItem('access_token', accessToken);
     }
 
     console.log("Token recibido:", accessToken);
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         try {
             // Intentamos obtener los datos de la orden
-            const envio = await realizarSolicitudConToken(url, { method: "GET" });
+            const envio = await realizarSolicitudConToken(accessToken, url, { method: "GET" });
 
             console.log("Datos del envío:", envio);
 
