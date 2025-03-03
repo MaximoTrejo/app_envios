@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         return;
     }
 
-    // 🔹 Corregir el botón de búsqueda
-    const buscarButton = document.getElementById("buscar-envio"); // ✅ Ahora obtiene el botón correcto
+    const buscarButton = document.getElementById("buscar-envio");
 
     buscarButton.addEventListener("click", async function () {
         const orden_id = document.getElementById("buscador-codigo").value;

@@ -1,4 +1,3 @@
-// auth.js
 export async function obtenerToken() {
     const urlParams = new URLSearchParams(window.location.search);
     const authCode = urlParams.get('code');
@@ -8,31 +7,23 @@ export async function obtenerToken() {
         return null;
     }
 
-    const data = {
-        client_id: '5174586942693408',
-        client_secret: 'QW3yOIAUHqbQk1sg7ypmdxBVPbgpUFNt',
-        code: authCode,
-        grant_type: 'authorization_code',
-        redirect_uri: 'https://maximotrejo.github.io/app_envios/web/index.html'
-    };
-
     try {
-        const response = await fetch('https://api.mercadolibre.com/oauth/token', {
+        const response = await fetch('http://localhost:666/token/oauth/token', {  // Tu backend debe manejar esta ruta
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(data)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code: authCode })
         });
 
         const result = await response.json();
 
-        if (response.ok) {
+        if (response.ok && result.access_token) {
             return result.access_token;
         } else {
             console.error("Error al obtener el token:", result);
             return null;
         }
     } catch (error) {
-        console.error("Error al hacer la solicitud:", error);
+        console.error("Error en la solicitud del token:", error);
         return null;
     }
 }
