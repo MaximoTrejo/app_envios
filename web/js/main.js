@@ -1,6 +1,6 @@
 import { obtenerToken } from './auth.js';
-import { obtenerEnviosPorId } from './api.js'; // Vamos a crear esta función en api.js
-import { mostrarEnviosEnTabla } from './ui.js';
+import { obtenerEnviosPorId } from './api.js';
+import UI from './ui.js';  // Importar la clase UI
 
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("Obteniendo token...");
@@ -25,12 +25,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log("Buscando envío con ID:", orden_id);
 
         // Llamamos a la función que obtendrá los datos del envío
-        const envio = await obtenerOrdenPorId(accessToken, orden_id);
+        const envio = await obtenerEnviosPorId(accessToken, orden_id);
         
         if (envio) {
-            mostrarEnviosEnTabla([envio]); // Pasamos el resultado a la tabla
+            UI.mostrarOrdenEnTabla([envio]); // Usar el método estático de la clase UI
         } else {
-            alert("No se puede montrar el envío.");
+            alert("No se puede mostrar el envío.");
         }
     });
 });
