@@ -11,22 +11,22 @@ export async function obtenerToken() {
     console.log("Token no encontrado, redirigiendo al proceso de autenticación.");
     return null;
 }
-
 // Función para obtener un nuevo token usando el código de autorización
-export async function obtenerNuevoToken() {
-    const code = 'auth_code_obtenido_de_otra_manera'; // Ejemplo, sustituir por el código real
+export async function obtenerNuevoToken(code) {
     const response = await fetch("http://localhost:666/token/obtenerToken", {
-        method: "POST",
+        method: "POST",  // Asegurarse de usar POST para obtener el token
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json"  // Si la API espera datos en formato JSON
         },
-        body: JSON.stringify({ code })
+        body: JSON.stringify({ code })  // Usamos el código de autorización recibido como parámetro
     });
 
-    const data = await response.json();
+    // Verificamos si la respuesta es exitosa
     if (response.ok) {
-        return data.access_token;
+        const data = await response.json();
+        return data.access_token;  // Retornamos el token de acceso
     } else {
-        throw new Error("No se pudo obtener un nuevo token.");
+        const errorData = await response.json();
+        throw new Error(`No se pudo obtener un nuevo token: ${errorData.message || response.statusText}`);
     }
 }
