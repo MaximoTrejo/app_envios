@@ -19,13 +19,13 @@
     <div class="tab-content active" id="pedidos">
         <h2>Lista de Pedidos</h2>
         
-        <!-- Filtro de estado de los envíos -->
-        <select id="estado-envios">
-            <option value="">Todos</option>
-            <option value="paid">Pagados</option>
-            <option value="delivered">Entregados</option>
-            <option value="cancelled">Cancelados</option>
-        </select>
+        <!-- Buscador por código de envío -->
+        <div>
+            <label for="buscador-codigo">Buscador por código de envío:</label>
+            <input type="text" id="buscador-codigo" placeholder="Ingresa el ID de envío">
+            <!-- Botón para buscar el envío -->
+            <button id="buscar-envio">Buscar</button>
+        </div>
         
         <!-- Tabla de envíos -->
         <table>

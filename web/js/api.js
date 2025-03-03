@@ -1,5 +1,5 @@
-export async function obtenerEnvios(accessToken, estado) {
-    const url = `https://api.mercadolibre.com/shipping/shipments/search?shipment_status=${estado}`;
+export async function obtenerEnviosPorId(accessToken, shipmentId) {
+    const url = `http://localhost:666/Envios/shipments?shipment_id=${shipmentId}&access_token=${accessToken}`;
 
     try {
         const response = await fetch(url, {
@@ -10,9 +10,13 @@ export async function obtenerEnvios(accessToken, estado) {
         });
 
         const data = await response.json();
-        return data.results; // Retorna los envíos encontrados
+        
+        if (data && data.results && data.results.length > 0) {
+            return data.results[0]; // Retorna el primer resultado (suponiendo que siempre viene un solo envío)
+        }
+        return null; // Si no se encuentra el envío
     } catch (error) {
-        console.error("Error obteniendo los envíos:", error);
-        return [];
+        console.error("Error obteniendo el envío:", error);
+        return null;
     }
 }

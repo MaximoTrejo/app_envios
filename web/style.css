@@ -39,26 +39,57 @@ body {
     display: block;
 }
 
-/* Contenedor de la tabla para centrarla */
-.table-container {
-    width: 100%;
-    max-width: 1200px; /* Limita el tamaño máximo de la tabla en pantallas grandes */
-    margin: 0 auto; /* Centra la tabla */
+/* Estilos del buscador */
+#pedidos div {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#buscador-codigo {
+    padding: 6px 12px;  /* Ajustamos el tamaño del texto */
+    font-size: 14px;    /* Reducción del tamaño del texto */
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 200px;       /* Reducimos el tamaño del input */
+    margin-left: 10px;
+}
+
+#buscador-codigo:focus {
+    border-color: #f39c12;
+    outline: none;
+}
+
+/* Estilos del botón de búsqueda */
+#buscar-envio {
+    padding: 6px 15px;
+    background-color: #f39c12;
+    color: white;
+    border: 2px solid #f39c12;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-left: 10px;
+}
+
+#buscar-envio:hover {
+    background-color: #e67e22;
+    border-color: #e67e22;
 }
 
 /* Estilos de la tabla */
 #pedidos table {
-    width: 100%; /* Ancho completo de la pantalla */
+    width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* Asegura que las celdas tengan el mismo tamaño */
+    table-layout: fixed;
 }
 
-/* Celdas de la tabla */
 th, td {
     padding: 10px;
     text-align: center;
     word-wrap: break-word;
-    border: 1px solid #ddd; /* Bordes visibles en las celdas */
+    border: 1px solid #ddd;
 }
 
 th {
@@ -81,29 +112,17 @@ th {
     }
 
     .table-container {
-        padding: 0 10px; /* Añade un pequeño padding para no pegar la tabla al borde */
-    }
-}
-
-@media (max-width: 600px) {
-    table {
-        font-size: 12px; /* Reducir el tamaño de fuente en pantallas más pequeñas */
-        width: 100%;
+        padding: 0 10px;
     }
 
-    th, td {
-        padding: 8px;
+    /* Estilos para el buscador en móvil */
+    #buscador-codigo {
+        width: 180px;  /* Reducimos aún más el tamaño del input */
+        font-size: 13px;  /* Reducción extra del tamaño del texto */
+        padding: 5px 10px;  /* Ajustamos el padding para que se vea más compacto */
     }
 
-    .navbar {
-        flex-direction: column;
-    }
-
-    .navbar button {
-        width: 100%;
-    }
-
-    .table-container {
-        padding: 0 10px; /* Ajuste del padding en pantallas más pequeñas */
+    #pedidos div {
+        margin-bottom: 15px;  /* Reducimos el margen para que quede más cerca de la tabla */
     }
 }
