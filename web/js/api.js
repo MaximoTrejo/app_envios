@@ -4,6 +4,8 @@ export async function obtenerEnviosPorId(accessToken, shipmentId) {
     console.log("URL de la petición:", url);
 
     try {
+
+        console.log("Estoy aca");
         const response = await fetch(url, {
             method: "GET",
             headers: {
