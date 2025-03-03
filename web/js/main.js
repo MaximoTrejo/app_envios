@@ -1,5 +1,5 @@
 import { obtenerToken, obtenerNuevoToken } from './auth.js';  // Asegúrate de importar las funciones necesarias
-import { realizarSolicitudConToken } from './api.js';  // Usar la función que maneja el token automáticamente
+import { obtenerOrdenPorId, realizarSolicitudConToken } from './api.js';  // Usar la función que maneja el token automáticamente
 import UI from './ui.js';  // Importar la clase UI
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -25,6 +25,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     console.log("Token obtenido:", accessToken);
 
+
+
+
+
+
     const buscarButton = document.getElementById("buscar-envio");
 
     buscarButton.addEventListener("click", async function () {
@@ -37,11 +42,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         console.log("Buscando envío con ID:", orden_id);
 
-        const url = `http://localhost:666/ordenes/orders?orden_id=${orden_id}`;
-
         try {
-            const envio = await realizarSolicitudConToken(accessToken, url, { method: "GET" });
-
+            const envio = await obtenerOrdenPorId(accessToken,orden_id)
             console.log("Datos del envío:", envio);
 
             if (envio) {

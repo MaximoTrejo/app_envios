@@ -30,3 +30,48 @@ export async function obtenerNuevoToken(code) {
         throw new Error(`No se pudo obtener un nuevo token: ${errorData.message || response.statusText}`);
     }
 }
+
+// Función para validar si el token es válido, si no lo está, obtener uno nuevo
+export async function validarToken() {
+    // Intentamos obtener el token desde localStorage
+    let accessToken = localStorage.getItem('access_token');
+    
+    // Si no existe el token, obtenemos uno nuevo
+    if (!accessToken) {
+        console.log("Token no encontrado, obteniendo uno nuevo...");
+        const code = new URLSearchParams(window.location.search).get('code'); // Obtener el código de la URL
+        if (code) {
+            accessToken = await obtenerNuevoToken(code);  // Llamamos a obtenerNuevoToken con el code
+            localStorage.setItem('access_token', accessToken); // Guardamos el nuevo token
+        } else {
+            throw new Error("No se encontró el código de autorización en la URL.");
+        }
+    }
+    
+    // Verificar si el token es válido (por ejemplo, si no ha expirado)
+    const url = "http://localhost:666/validar_token";  // Asumiendo que la API tiene un endpoint para validar el token
+    
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${accessToken}`
+            }
+        });
+
+        if (response.ok) {
+            // Si el token es válido
+            return accessToken;
+        } else {
+            // Si el token está expirado o es inválido, obtenemos un nuevo token
+            console.log("Token expirado o inválido, obteniendo un nuevo token...");
+            const code = new URLSearchParams(window.location.search).get('code');  // Obtener el código de la URL nuevamente
+            accessToken = await obtenerNuevoToken(code);  // Llamamos a obtenerNuevoToken con el code
+            localStorage.setItem('access_token', accessToken); // Guardamos el nuevo token
+            return accessToken;
+        }
+    } catch (error) {
+        console.error("Error validando el token:", error);
+        throw error;
+    }
+}

@@ -25,38 +25,3 @@ export async function obtenerOrdenPorId(accessToken, orden_id) {
     }
 }
 
-
-// Función que maneja la solicitud con el token, si está expirado obtiene uno nuevo
-export async function realizarSolicitudConToken(accessToken, url, options) {
-    try {
-        const response = await fetch(url, {
-            ...options,
-            headers: {
-                "Authorization": `Bearer ${accessToken}`,
-                ...options.headers // Mantener otros encabezados si los hubiera
-            }
-        });
-
-        const data = await response.json();
-        // Si la respuesta es exitosa, retornamos los datos
-        if (response.ok) {
-            return data;
-        } else {
-            // Si el token está expirado o hay un error relacionado
-            if (data.error === 'invalid_grant') {
-                console.log("Token expirado, obteniendo un nuevo token...");
-                // Llamar a la función para obtener un nuevo token
-                const nuevoToken = await obtenerNuevoToken(); 
-                // Guardar el nuevo token en localStorage
-                localStorage.setItem('access_token', nuevoToken);
-                // Hacer la solicitud nuevamente con el nuevo token
-                return realizarSolicitudConToken(nuevoToken, url, options);
-            }
-            // Si ocurre cualquier otro error, lo lanzamos
-            throw new Error(`Error en la API: ${data.message}`);
-        }
-    } catch (error) {
-        console.error("Error al hacer la solicitud:", error);
-        throw error;
-    }
-}
