@@ -1,5 +1,5 @@
 import { obtenerToken } from './auth.js';
-import { obtenerEnviosPorId } from './api.js';
+import { obtenerEnviosPorId, obtenerOrdenPorId } from './api.js';
 import UI from './ui.js';  // Importar la clase UI
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log("Buscando envío con ID:", orden_id);
 
         // Llamamos a la función que obtendrá los datos del envío
-        const envio = await obtenerEnviosPorId(accessToken, orden_id);
+        const envio = await obtenerOrdenPorId(accessToken, orden_id);
         
         if (envio) {
             UI.mostrarOrdenEnTabla([envio]); // Usar el método estático de la clase UI
