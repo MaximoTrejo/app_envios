@@ -47,6 +47,9 @@ class UI {
             const celdaComprador = document.createElement('td');
             celdaComprador.textContent = `${envio.buyer.first_name} ${envio.buyer.last_name}`;
 
+            const celdaArticulo = document.createElement('td');
+            celdaArticulo.textContent = item.title || "Sin título";
+
             const celdaIdEnvio = document.createElement('td');
             celdaIdEnvio.textContent = envio.shipping.id;
 
@@ -58,6 +61,7 @@ class UI {
 
             fila.appendChild(celdaId);
             fila.appendChild(celdaComprador);
+            fila.appendChild(celdaArticulo);
             fila.appendChild(celdaIdEnvio);
             fila.appendChild(celdaEstado);
             fila.appendChild(celdaFecha);
