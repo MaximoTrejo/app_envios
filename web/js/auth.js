@@ -8,7 +8,7 @@ export async function obtenerToken() {
     }
 
     try {
-        const response = await fetch('http://localhost:666/token/oauth/token', {  // Tu backend debe manejar esta ruta
+        const response = await fetch('http://localhost:666/token/obtenerToken', {  // Tu backend debe manejar esta ruta
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ code: authCode })
