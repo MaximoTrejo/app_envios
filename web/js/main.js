@@ -13,24 +13,24 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // Asignar el evento para el botón de búsqueda
-    const buscarButton = document.getElementById("buscar-envio");
+    const buscarButton = document.getElementById("tabla-orden");
     buscarButton.addEventListener("click", async function () {
-        const shipmentId = document.getElementById("buscador-codigo").value;
+        const orden_id = document.getElementById("buscador-codigo").value;
         
-        if (!shipmentId) {
+        if (!orden_id) {
             alert("Por favor ingresa un ID de envío.");
             return;
         }
 
-        console.log("Buscando envío con ID:", shipmentId);
+        console.log("Buscando envío con ID:", orden_id);
 
         // Llamamos a la función que obtendrá los datos del envío
-        const envio = await obtenerEnviosPorId(accessToken, shipmentId);
+        const envio = await obtenerOrdenPorId(accessToken, orden_id);
         
         if (envio) {
             mostrarEnviosEnTabla([envio]); // Pasamos el resultado a la tabla
         } else {
-            alert("No se encontró el envío.");
+            alert("No se puede montrar el envío.");
         }
     });
 });

@@ -31,3 +31,44 @@ export function mostrarEnviosEnTabla(envios) {
         tabla.appendChild(row);
     });
 }
+
+
+function mostrarEnviosEnTabla(envios) {
+    // Obtener el tbody donde se mostrarán las filas
+    const tablaOrden = document.getElementById('tabla-orden');
+    
+    // Limpiar la tabla antes de agregar los nuevos datos
+    tablaOrden.innerHTML = '';
+
+    // Iterar sobre los envíos y crear una fila por cada uno
+    envios.forEach(envio => {
+        // Crear una nueva fila de la tabla
+        const fila = document.createElement('tr');
+
+        // Crear las celdas de la fila
+        const celdaId = document.createElement('td');
+        celdaId.textContent = envio.id;
+
+        const celdaComprador = document.createElement('td');
+        celdaComprador.textContent = `${envio.buyer.first_name} ${envio.buyer.last_name}`;
+
+        const celdaIdEnvio = document.createElement('td');
+        celdaIdEnvio.textContent = envio.shipping.id;
+
+        const celdaEstado = document.createElement('td');
+        celdaEstado.textContent = envio.status;
+
+        const celdaFecha = document.createElement('td');
+        celdaFecha.textContent = new Date(envio.date_created).toLocaleString();  // Formato de fecha legible
+
+        // Agregar las celdas a la fila
+        fila.appendChild(celdaId);
+        fila.appendChild(celdaComprador);
+        fila.appendChild(celdaIdEnvio);
+        fila.appendChild(celdaEstado);
+        fila.appendChild(celdaFecha);
+
+        // Agregar la fila al tbody
+        tablaOrden.appendChild(fila);
+    });
+}
