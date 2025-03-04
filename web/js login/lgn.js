@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const data = await response.json();
+        console.log("respuesta api", data)
+
         if (data.success) {
             if (rememberMe) localStorage.setItem("email", email);
             else localStorage.removeItem("email");
