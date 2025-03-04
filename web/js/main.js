@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     let accessToken = await obtenerToken();
 
+    console.log("Token obtenido del localStore:", accessToken);
+
     if (!accessToken) {
         console.log("Token no encontrado, obteniendo uno nuevo...");
 
@@ -23,9 +25,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     console.log("Token obtenido:", accessToken);
-
-
-
 
 
 
