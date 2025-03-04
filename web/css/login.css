@@ -1,0 +1,98 @@
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Contenedor del login */
+.login-container {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Título "Iniciar Sesión" */
+.login-container h2 {
+    margin-bottom: 20px; /* Agrega espacio debajo del título */
+    font-size: 22px;
+}
+
+/* Contenedor de los inputs para alinear bordes */
+.input-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Alineación del checkbox */
+.remember-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.remember-container input {
+    width: auto;
+    margin-right: 5px;
+}
+
+/* Botón de iniciar sesión */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #ff9900;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #e68a00;
+}
+
+/* Botón de Mercado Libre */
+.mercado-libre-btn {
+    background-color: #00a650;
+}
+
+.mercado-libre-btn:hover {
+    background-color: #008d45;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .login-container {
+        padding: 20px;
+    }
+
+    input, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

@@ -3,58 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Pedidos</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <div class="input-container">
+                <input type="email" id="email" placeholder="Correo Electrónico" required>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+            
+            <div class="remember-container">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Recordarme</label>
+            </div>
 
-    <!-- Barra de navegación con pestañas -->
-    <nav class="navbar">
-        <button class="tab-button active" data-tab="pedidos">Lista de Pedidos</button>
-        <button class="tab-button" data-tab="reportes">Reportes</button>
-        <button class="tab-button" data-tab="configuracion">Configuración</button>
-    </nav>
-
-    <!-- Contenido de las pestañas -->
-    <div class="tab-content active" id="pedidos">
-        <h2>Lista de Pedidos</h2>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
         
-        <!-- Buscador por código de envío -->
-        <div>
-            <label for="buscador-codigo">Buscador por código de envío:</label>
-            <input type="text" id="buscador-codigo" placeholder="Ingresa el ID de envío">
-            <!-- Botón para buscar el envío -->
-            <button id="buscar-envio">Buscar</button>
-        </div>
-        
-        <!-- Tabla de envíos -->
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Comprador</th>
-                    <th>Articulo</th>
-                    <th>ID Envío</th>
-                    <th>Estado</th>
-                    <th>Fecha</th>
-                </tr>
-            </thead>
-            <tbody id="tabla-orden">
-            </tbody>
-        </table>
+        <button id="mercadoLibreLogin" class="mercado-libre-btn">
+            Ingresar con Mercado Libre
+        </button>
     </div>
 
-    <div class="tab-content" id="reportes">
-        <h2>Reportes</h2>
-        <p>Aquí irán los reportes generados.</p>
-    </div>
-
-    <div class="tab-content" id="configuracion">
-        <h2>Configuración</h2>
-        <p>Aquí puedes configurar la aplicación.</p>
-    </div>
-
-    <script type="module" src="js/main.js"></script>
-    
+    <script src="./js login/lgn.js"></script>
 </body>
 </html>

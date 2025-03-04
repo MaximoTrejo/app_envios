@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <!-- Barra de navegación con pestañas -->
+    <nav class="navbar">
+        <button class="tab-button active" data-tab="pedidos">Lista de Pedidos</button>
+        <button class="tab-button" data-tab="reportes">Reportes</button>
+        <button class="tab-button" data-tab="configuracion">Configuración</button>
+    </nav>
+
+    <!-- Contenido de las pestañas -->
+    <div class="tab-content active" id="pedidos">
+        <h2>Lista de Pedidos</h2>
+        
+        <!-- Buscador por código de envío -->
+        <div>
+            <label for="buscador-codigo">Buscador por código de envío:</label>
+            <input type="text" id="buscador-codigo" placeholder="Ingresa el ID de envío">
+            <!-- Botón para buscar el envío -->
+            <button id="buscar-envio">Buscar</button>
+        </div>
+        
+        <!-- Tabla de envíos -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Comprador</th>
+                    <th>Articulo</th>
+                    <th>ID Envío</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-orden">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tab-content" id="reportes">
+        <h2>Reportes</h2>
+        <p>Aquí irán los reportes generados.</p>
+    </div>
+
+    <div class="tab-content" id="configuracion">
+        <h2>Configuración</h2>
+        <p>Aquí puedes configurar la aplicación.</p>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+    
+</body>
+</html>
