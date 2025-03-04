@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Redirigir a la autenticación de Mercado Libre
                 const clientId = "5174586942693408";
-                const redirectUri = encodeURIComponent("https://maximotrejo.github.io/app_envios/web/pagPrincipal.html");
+                const redirectUri = encodeURIComponent("https://maximotrejo.github.io/app_envios/web/html/pagPrincipal.html");
                 window.location.href = `https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}`;
             } else {
                 alert("Credenciales incorrectas. Inténtalo de nuevo.");
