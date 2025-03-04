@@ -1,30 +1,31 @@
-import { obtenerToken, obtenerNuevoToken } from './auth.js'; 
+import { obtenerToken} from './auth.js'; 
 import { obtenerOrdenPorId} from './api.js'; 
 import UI from './ui.js';  
 
 document.addEventListener("DOMContentLoaded", async function () {
 
-    let accessToken = await obtenerToken();
-
-    console.log("Token obtenido del localStore:", accessToken);
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');  
+    
+    let accessToken = await obtenerToken(code);  // Pasamos el `code` directamente a la función
+    
+    console.log("Token obtenido:", accessToken);
+    
     if (!accessToken) {
-        console.log("Token no encontrado, obteniendo uno nuevo...");
-
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');  
-
+        console.log("Token no encontrado o expirado, obteniendo uno nuevo...");
+    
         if (!code) {
             alert("Se necesita un código de autorización para obtener un nuevo token.");
             return;
         }
-
-        accessToken = await obtenerNuevoToken(code);  
-        localStorage.setItem('access_token', accessToken);
+    
+        // Si el `code` no estaba disponible antes, lo usamos para obtener un nuevo token
+        accessToken = await obtenerToken(code);  
     }
+    
+    console.log("Token final:", accessToken);
 
-    console.log("Token obtenido:", accessToken);
+
 
     const buscarButton = document.getElementById("buscar-envio");
 
