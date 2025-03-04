@@ -14,17 +14,26 @@ body {
     justify-content: center;
 }
 
-.navbar button {
+/* Estilos para los enlaces que se comportan como botones */
+.navbar a {
     background: #444;
     color: white;
-    border: none;
+    text-decoration: none;
     padding: 10px;
     cursor: pointer;
     margin: 0 5px;
+    border-radius: 5px; /* Añadir bordes redondeados */
+    transition: background 0.3s ease;
 }
 
-.navbar button.active {
+/* Estilo para el enlace activo */
+.navbar a.active {
     background: #f39c12;
+}
+
+/* Efecto hover para los enlaces */
+.navbar a:hover {
+    background-color: #e67e22;
 }
 
 /* Contenido de pestañas */
@@ -96,7 +105,6 @@ th {
     background-color: #f4f4f4;
 }
 
-
 /* Estilos para el buscador en móvil */
 @media (max-width: 768px) {
     /* ... (resto de tus estilos para móvil) ... */
@@ -131,9 +139,10 @@ th {
         flex-direction: column;
     }
 
-    .navbar button {
+    .navbar a {
         width: 100%;
         margin: 5px 0;
+        text-align: center;
     }
 
     table {

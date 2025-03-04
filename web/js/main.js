@@ -26,8 +26,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     console.log("Token obtenido:", accessToken);
 
-
-
     const buscarButton = document.getElementById("buscar-envio");
 
     buscarButton.addEventListener("click", async function () {
