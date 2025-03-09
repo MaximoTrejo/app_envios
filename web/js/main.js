@@ -33,20 +33,28 @@ document.addEventListener("DOMContentLoaded", async function () {
             alert("No se pudo obtener el ID del vendedor.");
             return;
         }
+        // Llamada a obtenerIDpublicaciones con id_vendedor
+try {
+    const idPublicaciones = await ObtenerIDpublicaciones(accessToken, id_vendedor);
+    console.log("ID de publicaciones obtenidas:", idPublicaciones);
 
-        // Llamada a obtenerOrdenes con id_vendedor
-        try {
-            const ordenes = await ObtenerOrdenes(accessToken, id_vendedor);
-            console.log("Órdenes obtenidas:", ordenes);
+    if (idPublicaciones && idPublicaciones.length > 0) {
+        // Llamar a ObtenerDetallePublicaciones con los idPublicaciones obtenidos
+        const detallesPublicaciones = await ObtenerDetallePublicaciones(accessToken, idPublicaciones);
+        console.log("Detalles de publicaciones obtenidos:", detallesPublicaciones);
 
-            if (ordenes && ordenes.length > 0) {
-                UI.mostrarOrdenEnTabla(ordenes);
-            } else {
-                alert("No se encontraron órdenes.");
-            }
-        } catch (error) {
-            console.error("Error obteniendo órdenes:", error);
+        if (detallesPublicaciones && detallesPublicaciones.length > 0) {
+            UI.mostrarPublicaciones(detallesPublicaciones);
+        } else {
+            alert("No se encontraron detalles de publicaciones.");
         }
+    } else {
+        alert("No se encontraron ID de publicaciones.");
+    }
+} catch (error) {
+    console.error("Error obteniendo detalles de publicaciones:", error);
+}
+            
     } catch (error) {
         console.error("Error obteniendo el ID del vendedor:", error);
         alert("Ocurrió un error al obtener el ID del vendedor.");

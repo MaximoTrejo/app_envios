@@ -75,3 +75,52 @@ export async function ObtenerIdVendedor(accessToken) {
         return null;
     }
 }
+
+export async function ObtenerIDpublicaciones(accessToken, id_vendedor) {
+    const url = `http://localhost:666/publicaciones/IdPublicaciones?id_vendedor=${id_vendedor}&access_token=${accessToken}`;
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${accessToken}`
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Error en la respuesta:", response.status, response.statusText);
+            return null;
+        }
+
+        const data = await response.json();
+        return data?.results ?? null;
+    } catch (error) {
+        console.error("Error obteniendo las publicaciones del vendedor:", error);
+        return null;
+    }
+}
+
+export async function ObtenerDetallePublicaciones(accessToken, idPublicaciones) {
+    const url = `http://localhost:666/publicaciones/detallePublicaciones?id_publicaciones=${idPublicaciones}&access_token=${accessToken}`;
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Error en la respuesta:", response.status, response.statusText);
+            return null;
+        }
+
+        const data = await response.json();
+        return data.length > 0 ? data.map(item => item.body) : null;
+    } catch (error) {
+        console.error("Error obteniendo las publicaciones del vendedor:", error);
+        return null;
+    }
+}

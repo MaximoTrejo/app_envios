@@ -69,6 +69,52 @@ class UI {
             tablaOrden.appendChild(fila);
         });
     }
+
+    static mostrarPublicaciones(json) {
+        // Accede al array de publicaciones
+        const publicaciones = json[0].body; // El JSON que muestras tiene un solo objeto, pero podrías tener más
+    
+        // Obtiene el tbody donde se insertarán las filas
+        const tablaOrden = document.getElementById('tabla-orden');
+    
+        // Asegúrate de limpiar la tabla antes de agregar nuevas filas
+        tablaOrden.innerHTML = '';
+    
+        // Crea una fila para cada publicación
+        publicaciones.forEach(publicacion => {
+            // Crea una nueva fila de tabla
+            const fila = document.createElement('tr');
+            
+            // Crea y agrega cada celda
+            const idCelda = document.createElement('td');
+            idCelda.textContent = publicacion.id; // ID de la publicación
+            fila.appendChild(idCelda);
+            
+            const compradorCelda = document.createElement('td');
+            compradorCelda.textContent = publicacion.seller_id; // ID del vendedor como comprador
+            fila.appendChild(compradorCelda);
+            
+            const articuloCelda = document.createElement('td');
+            articuloCelda.textContent = publicacion.title; // Título del artículo
+            fila.appendChild(articuloCelda);
+            
+            const envioCelda = document.createElement('td');
+            envioCelda.textContent = publicacion.shipping.mode; // Modo de envío
+            fila.appendChild(envioCelda);
+            
+            const estadoCelda = document.createElement('td');
+            estadoCelda.textContent = publicacion.status; // Estado de la publicación
+            fila.appendChild(estadoCelda);
+            
+            const fechaCelda = document.createElement('td');
+            fechaCelda.textContent = publicacion.date_created; // Fecha de creación
+            fila.appendChild(fechaCelda);
+    
+            // Agrega la fila al cuerpo de la tabla
+            tablaOrden.appendChild(fila);
+        });
+    }
+    
 }
 
 export default UI;
