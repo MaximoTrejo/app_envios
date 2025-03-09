@@ -73,7 +73,7 @@ class UI {
     static mostrarPublicaciones(json) {
         // Validar que json sea un array antes de acceder a sus propiedades
         if (!Array.isArray(json)) {
-            console.error("Error: json no es un array válido", json);
+            console.log("Error: json no es un array válido", json);
             json = []; // Asignar un array vacío para evitar errores
         }
     
@@ -82,7 +82,7 @@ class UI {
     
         // Verificar si la tabla existe
         if (!tablaOrden) {
-            console.error("Error: No se encontró el elemento con id 'tabla-orden'");
+            console.log("Error: No se encontró el elemento con id 'tabla-orden'");
             return;
         }
     
