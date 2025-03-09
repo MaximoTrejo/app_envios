@@ -71,15 +71,15 @@ class UI {
     }
 
     static mostrarPublicaciones(json) {
-        // Accede al array de publicaciones
-        const publicaciones = json[0].body; // El JSON que muestras tiene un solo objeto, pero podrías tener más
-    
+        // Accede directamente al array de publicaciones
+        const publicaciones = json; // Ya es un array, no necesitas acceder a json[0].body
+        
         // Obtiene el tbody donde se insertarán las filas
         const tablaOrden = document.getElementById('tabla-orden');
-    
+        
         // Asegúrate de limpiar la tabla antes de agregar nuevas filas
         tablaOrden.innerHTML = '';
-    
+        
         // Crea una fila para cada publicación
         publicaciones.forEach(publicacion => {
             // Crea una nueva fila de tabla
@@ -99,21 +99,22 @@ class UI {
             fila.appendChild(articuloCelda);
             
             const envioCelda = document.createElement('td');
-            envioCelda.textContent = publicacion.shipping.mode; // Modo de envío
+            envioCelda.textContent = publicacion.shipping ? publicacion.shipping.mode : 'No especificado'; // Modo de envío (verificación adicional)
             fila.appendChild(envioCelda);
             
             const estadoCelda = document.createElement('td');
-            estadoCelda.textContent = publicacion.status; // Estado de la publicación
+            estadoCelda.textContent = publicacion.status || 'Estado no disponible'; // Estado de la publicación (verificación adicional)
             fila.appendChild(estadoCelda);
             
             const fechaCelda = document.createElement('td');
-            fechaCelda.textContent = publicacion.date_created; // Fecha de creación
+            fechaCelda.textContent = publicacion.date_created || 'Fecha no disponible'; // Fecha de creación (verificación adicional)
             fila.appendChild(fechaCelda);
     
             // Agrega la fila al cuerpo de la tabla
             tablaOrden.appendChild(fila);
         });
     }
+    
     
 }
 
