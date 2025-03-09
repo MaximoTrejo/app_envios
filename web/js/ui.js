@@ -71,76 +71,79 @@ class UI {
     }
 
     static mostrarPublicaciones(json) {
-        // Accede directamente al array de publicaciones
-        const publicaciones = json; // Ya es un array, no necesitas acceder a json[0].body
+        // Validar que json sea un array antes de acceder a sus propiedades
+        if (!Array.isArray(json)) {
+            console.error("Error: json no es un array válido", json);
+            json = []; // Asignar un array vacío para evitar errores
+        }
     
         // Obtiene el tbody donde se insertarán las filas
         const tablaOrden = document.getElementById('tabla-orden');
-        
+    
+        // Verificar si la tabla existe
+        if (!tablaOrden) {
+            console.error("Error: No se encontró el elemento con id 'tabla-orden'");
+            return;
+        }
+    
         // Asegúrate de limpiar la tabla antes de agregar nuevas filas
         tablaOrden.innerHTML = '';
-        
+    
         // Si el array está vacío, agrega una fila que diga "Sin datos"
-        if (publicaciones.length === 0) {
+        if (json.length === 0) {
             const fila = document.createElement('tr');
-            
-            // Columna para el mensaje "Sin datos"
             const celdaSinDatos = document.createElement('td');
-            celdaSinDatos.colSpan = 7; // Aumentar el colspan para cubrir todas las columnas de la tabla (incluyendo "Acciones")
+            celdaSinDatos.colSpan = 7; // Asegurar que cubre todas las columnas
             celdaSinDatos.textContent = 'Sin datos';
             fila.appendChild(celdaSinDatos);
-            
-            // Agregar la fila "Sin datos"
             tablaOrden.appendChild(fila);
-        } else {
-            // Si hay datos, crea una fila para cada publicación
-            publicaciones.forEach(publicacion => {
-                // Crea una nueva fila de tabla
-                const fila = document.createElement('tr');
-                
-                // Crea y agrega cada celda
-                const idCelda = document.createElement('td');
-                idCelda.textContent = publicacion.id; // ID de la publicación
-                fila.appendChild(idCelda);
-                
-                const compradorCelda = document.createElement('td');
-                compradorCelda.textContent = publicacion.seller_id; // ID del vendedor como comprador
-                fila.appendChild(compradorCelda);
-                
-                const articuloCelda = document.createElement('td');
-                articuloCelda.textContent = publicacion.title; // Título del artículo
-                fila.appendChild(articuloCelda);
-                
-                const envioCelda = document.createElement('td');
-                envioCelda.textContent = publicacion.shipping ? publicacion.shipping.mode : 'No especificado'; // Modo de envío (verificación adicional)
-                fila.appendChild(envioCelda);
-                
-                const estadoCelda = document.createElement('td');
-                estadoCelda.textContent = publicacion.status || 'Estado no disponible'; // Estado de la publicación (verificación adicional)
-                fila.appendChild(estadoCelda);
-                
-                const fechaCelda = document.createElement('td');
-                fechaCelda.textContent = publicacion.date_created || 'Fecha no disponible'; // Fecha de creación (verificación adicional)
-                fila.appendChild(fechaCelda);
-                
-                // Crea la celda para el botón "Ver Envío"
-                const accionesCelda = document.createElement('td');
-                const verEnvioButton = document.createElement('button');
-                verEnvioButton.textContent = 'Ver Envío';
-                verEnvioButton.classList.add('btn', 'btn-info');
-                
-                // Aquí es donde se bloquea el botón si no hay publicaciones
-                verEnvioButton.disabled = true; // Por defecto, el botón estará deshabilitado
-                verEnvioButton.textContent = 'Ver Envío (Bloqueado)';
-                
-                accionesCelda.appendChild(verEnvioButton);
-                fila.appendChild(accionesCelda);
-                
-                // Agrega la fila al cuerpo de la tabla
-                tablaOrden.appendChild(fila);
-            });
+            return;
         }
+    
+        // Si hay datos, crea una fila para cada publicación
+        json.forEach(publicacion => {
+            const fila = document.createElement('tr');
+    
+            const idCelda = document.createElement('td');
+            idCelda.textContent = publicacion.id || 'N/A';
+            fila.appendChild(idCelda);
+    
+            const compradorCelda = document.createElement('td');
+            compradorCelda.textContent = publicacion.seller_id || 'N/A';
+            fila.appendChild(compradorCelda);
+    
+            const articuloCelda = document.createElement('td');
+            articuloCelda.textContent = publicacion.title || 'N/A';
+            fila.appendChild(articuloCelda);
+    
+            const envioCelda = document.createElement('td');
+            envioCelda.textContent = publicacion.shipping ? publicacion.shipping.mode : 'No especificado';
+            fila.appendChild(envioCelda);
+    
+            const estadoCelda = document.createElement('td');
+            estadoCelda.textContent = publicacion.status || 'Estado no disponible';
+            fila.appendChild(estadoCelda);
+    
+            const fechaCelda = document.createElement('td');
+            fechaCelda.textContent = publicacion.date_created || 'Fecha no disponible';
+            fila.appendChild(fechaCelda);
+    
+            // Crea la celda para el botón "Ver Envío"
+            const accionesCelda = document.createElement('td');
+            const verEnvioButton = document.createElement('button');
+            verEnvioButton.textContent = 'Ver Envío';
+            verEnvioButton.classList.add('btn', 'btn-info');
+    
+            // Si json.length === 0, deshabilitar el botón
+            verEnvioButton.disabled = json.length === 0;
+            accionesCelda.appendChild(verEnvioButton);
+            fila.appendChild(accionesCelda);
+    
+            // Agrega la fila al cuerpo de la tabla
+            tablaOrden.appendChild(fila);
+        });
     }
+    
     
 }
 
