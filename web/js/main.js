@@ -1,5 +1,5 @@
 import {obtenerToken} from './auth.js'; 
-import {obtenerOrdenPorId,ObtenerIdVendedor,ObtenerOrdenes} from './api.js'; 
+import {obtenerOrdenPorId,ObtenerIdVendedor,ObtenerIDpublicaciones,ObtenerDetallePublicaciones} from './api.js'; 
 import UI from './ui.js';  
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -34,26 +34,26 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
         // Llamada a obtenerIDpublicaciones con id_vendedor
-try {
-    const idPublicaciones = await ObtenerIDpublicaciones(accessToken, id_vendedor);
-    console.log("ID de publicaciones obtenidas:", idPublicaciones);
+        try {
+            const idPublicaciones = await ObtenerIDpublicaciones(accessToken, id_vendedor);
+            console.log("ID de publicaciones obtenidas:", idPublicaciones);
 
-    if (idPublicaciones && idPublicaciones.length > 0) {
-        // Llamar a ObtenerDetallePublicaciones con los idPublicaciones obtenidos
-        const detallesPublicaciones = await ObtenerDetallePublicaciones(accessToken, idPublicaciones);
-        console.log("Detalles de publicaciones obtenidos:", detallesPublicaciones);
+            if (idPublicaciones && idPublicaciones.length > 0) {
+                // Llamar a ObtenerDetallePublicaciones con los idPublicaciones obtenidos
+                const detallesPublicaciones = await ObtenerDetallePublicaciones(accessToken, idPublicaciones);
+                console.log("Detalles de publicaciones obtenidos:", detallesPublicaciones);
 
-        if (detallesPublicaciones && detallesPublicaciones.length > 0) {
-            UI.mostrarPublicaciones(detallesPublicaciones);
-        } else {
-            alert("No se encontraron detalles de publicaciones.");
+                if (detallesPublicaciones && detallesPublicaciones.length > 0) {
+                    UI.mostrarPublicaciones(detallesPublicaciones);
+                } else {
+                    alert("No se encontraron detalles de publicaciones.");
+                }
+            } else {
+                alert("No se encontraron ID de publicaciones.");
+            }
+        } catch (error) {
+            console.error("Error obteniendo detalles de publicaciones:", error);
         }
-    } else {
-        alert("No se encontraron ID de publicaciones.");
-    }
-} catch (error) {
-    console.error("Error obteniendo detalles de publicaciones:", error);
-}
             
     } catch (error) {
         console.error("Error obteniendo el ID del vendedor:", error);
