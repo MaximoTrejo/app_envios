@@ -41,11 +41,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const detallesPublicaciones = await ObtenerDetallePublicaciones(accessToken, idPublicaciones);
                 console.log("Detalles de publicaciones obtenidos:", detallesPublicaciones);
 
-                if (detallesPublicaciones && detallesPublicaciones.length > 0) {
-                    UI.mostrarPublicaciones(detallesPublicaciones);
-                } else {
-                    alert("No se encontraron detalles de publicaciones.");
-                }
+               
+                UI.mostrarPublicaciones(detallesPublicaciones);
+               
             } else {
                 alert("No se encontraron ID de publicaciones.");
             }
