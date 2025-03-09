@@ -1,5 +1,5 @@
-import { obtenerToken} from './auth.js'; 
-import { obtenerOrdenPorId,ObtenerIdVendedor,ObtenerOrdenes} from './api.js'; 
+import {obtenerToken} from './auth.js'; 
+import {obtenerOrdenPorId,ObtenerIdVendedor,ObtenerOrdenes} from './api.js'; 
 import UI from './ui.js';  
 
 document.addEventListener("DOMContentLoaded", async function () {
