@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js" defer></script>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="dashboard.html"><i class="bi bi-house"></i> Inicio</a>
+        <a href="#"><i class="bi bi-box"></i> Crear Artículos</a>
+        <a href="#"><i class="bi bi-shop"></i> Crear Publicación</a>
+        <a data-bs-toggle="collapse" href="#ventasMenu" role="button" aria-expanded="false" aria-controls="ventasMenu">
+            <i class="bi bi-cart"></i> Ventas
+        </a>
+        <div class="collapse" id="ventasMenu">
+            <a href="#" class="submenu">Cargar Factura</a>
+            <a href="#" class="submenu">Cargar Remito</a>
+            <a href="#" class="submenu">Cargar Pedido</a>
+        </div>
+        <a href="#"><i class="bi bi-person-plus"></i> Crear Usuarios</a>
+        <a href="#"><i class="bi bi-people"></i> Crear Proveedores</a>
+        <a data-bs-toggle="collapse" href="#stockMenu" role="button" aria-expanded="false" aria-controls="stockMenu">
+            <i class="bi bi-boxes"></i> Stock
+        </a>
+        <div class="collapse" id="stockMenu">
+            <a href="#" class="submenu">Consulta de Stock</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="search-container">
+            <input type="text" id="buscador-codigo" class="search-box" placeholder="Ingresa el ID de envío">
+            <button id="buscar-envio" class="search-button">Buscar</button>
+        </div>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Comprador</th>
+                    <th>Artículo</th>
+                    <th>ID Envío</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-orden"></tbody>
+        </table>
+    </div>
+</body>
+</html>

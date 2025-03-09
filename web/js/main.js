@@ -18,14 +18,39 @@ document.addEventListener("DOMContentLoaded", async function () {
             alert("Se necesita un código de autorización para obtener un nuevo token.");
             return;
         }
-    
-        // Si el `code` no estaba disponible antes, lo usamos para obtener un nuevo token
         accessToken = await obtenerToken(code);  
     }
     
     console.log("Token final:", accessToken);
 
 
+ // Obtener id_vendedor
+    try {
+        const id_vendedor = await ObtenerIdVendedor(accessToken); // Asegúrate de pasar accessToken si es necesario
+        console.log("ID del vendedor obtenido:", id_vendedor);
+
+        if (!id_vendedor) {
+            alert("No se pudo obtener el ID del vendedor.");
+            return;
+        }
+
+        // Llamada a obtenerOrdenes con id_vendedor
+        try {
+            const ordenes = await obtenerOrdenes(accessToken, id_vendedor);
+            console.log("Órdenes obtenidas:", ordenes);
+
+            if (ordenes && ordenes.length > 0) {
+                UI.mostrarOrdenEnTabla(ordenes);
+            } else {
+                alert("No se encontraron órdenes.");
+            }
+        } catch (error) {
+            console.error("Error obteniendo órdenes:", error);
+        }
+    } catch (error) {
+        console.error("Error obteniendo el ID del vendedor:", error);
+        alert("Ocurrió un error al obtener el ID del vendedor.");
+    }
 
     const buscarButton = document.getElementById("buscar-envio");
 

@@ -1,0 +1,173 @@
+body {
+    font-size: 14px;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 250px;
+    background: #34495e;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sidebar a:hover {
+    background: #2c3e50;
+}
+
+.submenu {
+    padding-left: 40px;
+    font-size: 13px;
+    margin-top: 50px;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    padding: 6px;
+    width: 200px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.search-button {
+    padding: 6px 12px;
+    background: #5d9cec;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    order: -1;
+}
+
+.search-button:hover {
+    background: #4a89dc;
+}
+
+/* Nuevo estilo para la tabla */
+.custom-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+}
+
+.custom-table th {
+    background: #5d9cec;
+    color: white;
+    text-align: left;
+    padding: 8px;
+    text-transform: uppercase;
+}
+
+.custom-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background: #f0f3f5;
+}
+
+.custom-table tbody tr:hover {
+    background: #d6e4f0;
+    transition: background 0.3s;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    
+    .content {
+        margin-left: 200px;
+    }
+    
+    .search-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-box {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .custom-table th, .custom-table td {
+        padding: 6px;
+    }
+
+    .search-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+    
+    .content {
+        margin-left: 0;
+    }
+    
+    .search-container {
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+    
+    .custom-table th, .custom-table td {
+        padding: 6px;
+    }
+    
+    .sidebar a {
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    
+    .sidebar-toggle {
+        display: block;
+    }
+}

@@ -59,24 +59,23 @@ export async function refrescarToken(refreshToken) {
     }
 }
 
-// Función para obtener un nuevo token usando el código de autorización
 export async function obtenerNuevoToken(code) {
     const response = await fetch("http://localhost:666/token/obtenerToken", {
-        method: "POST",  // Asegurarse de usar POST para obtener el token
+        method: "POST",  
         headers: {
-            "Content-Type": "application/json"  // Si la API espera datos en formato JSON
+            "Content-Type": "application/json" 
         },
-        body: JSON.stringify({ code })  // Usamos el código de autorización recibido como parámetro
+        body: JSON.stringify({ code }) 
     });
 
-    // Verificamos si la respuesta es exitosa
+
     if (response.ok) {
         const data = await response.json();
-        // Guardamos el nuevo token y su momento de adquisición
+
         localStorage.setItem('access_token', data.access_token);
         localStorage.setItem('refresh_token', data.refresh_token);
-        localStorage.setItem('token_acquired_time', Date.now()); // Guardamos el momento de adquisición del token
-        return data.access_token;  // Retornamos el token de acceso
+        localStorage.setItem('token_acquired_time', Date.now()); 
+        return data.access_token;  
     } else {
         const errorData = await response.json();
         throw new Error(`No se pudo obtener un nuevo token: ${errorData.message || response.statusText}`);
