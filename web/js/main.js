@@ -1,5 +1,5 @@
 import { obtenerToken} from './auth.js'; 
-import { obtenerOrdenPorId} from './api.js'; 
+import { obtenerOrdenPorId,ObtenerIdVendedor,ObtenerOrdenes} from './api.js'; 
 import UI from './ui.js';  
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Llamada a obtenerOrdenes con id_vendedor
         try {
-            const ordenes = await obtenerOrdenes(accessToken, id_vendedor);
+            const ordenes = await ObtenerOrdenes(accessToken, id_vendedor);
             console.log("Órdenes obtenidas:", ordenes);
 
             if (ordenes && ordenes.length > 0) {
