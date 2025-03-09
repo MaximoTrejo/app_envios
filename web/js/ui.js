@@ -83,10 +83,14 @@ class UI {
         // Si el array está vacío, agrega una fila que diga "Sin datos"
         if (publicaciones.length === 0) {
             const fila = document.createElement('tr');
+            
+            // Columna para el mensaje "Sin datos"
             const celdaSinDatos = document.createElement('td');
-            celdaSinDatos.colSpan = 6; // Colspan para cubrir todas las columnas de la tabla
+            celdaSinDatos.colSpan = 7; // Aumentar el colspan para cubrir todas las columnas de la tabla (incluyendo "Acciones")
             celdaSinDatos.textContent = 'Sin datos';
             fila.appendChild(celdaSinDatos);
+            
+            // Agregar la fila "Sin datos"
             tablaOrden.appendChild(fila);
         } else {
             // Si hay datos, crea una fila para cada publicación
@@ -118,14 +122,25 @@ class UI {
                 const fechaCelda = document.createElement('td');
                 fechaCelda.textContent = publicacion.date_created || 'Fecha no disponible'; // Fecha de creación (verificación adicional)
                 fila.appendChild(fechaCelda);
-        
+                
+                // Crea la celda para el botón "Ver Envío"
+                const accionesCelda = document.createElement('td');
+                const verEnvioButton = document.createElement('button');
+                verEnvioButton.textContent = 'Ver Envío';
+                verEnvioButton.classList.add('btn', 'btn-info');
+                
+                // Aquí es donde se bloquea el botón si no hay publicaciones
+                verEnvioButton.disabled = true; // Por defecto, el botón estará deshabilitado
+                verEnvioButton.textContent = 'Ver Envío (Bloqueado)';
+                
+                accionesCelda.appendChild(verEnvioButton);
+                fila.appendChild(accionesCelda);
+                
                 // Agrega la fila al cuerpo de la tabla
                 tablaOrden.appendChild(fila);
             });
         }
     }
-    
-    
     
 }
 
