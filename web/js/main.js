@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     
     console.log("Token final:", accessToken);
 
-
- // Obtener id_vendedor
     try {
         const id_vendedor = await ObtenerIdVendedor(accessToken); // Asegúrate de pasar accessToken si es necesario
         console.log("ID del vendedor obtenido:", id_vendedor);
@@ -33,13 +31,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             alert("No se pudo obtener el ID del vendedor.");
             return;
         }
-        // Llamada a obtenerIDpublicaciones con id_vendedor
+
         try {
             const idPublicaciones = await ObtenerIDpublicaciones(accessToken, id_vendedor);
             console.log("ID de publicaciones obtenidas:", idPublicaciones);
 
             if (idPublicaciones && idPublicaciones.length > 0) {
-                // Llamar a ObtenerDetallePublicaciones con los idPublicaciones obtenidos
+
                 const detallesPublicaciones = await ObtenerDetallePublicaciones(accessToken, idPublicaciones);
                 console.log("Detalles de publicaciones obtenidos:", detallesPublicaciones);
 
@@ -61,7 +59,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     const buscarButton = document.getElementById("buscar-envio");
-
     buscarButton.addEventListener("click", async function () {
         const orden_id = document.getElementById("buscador-codigo").value;
 

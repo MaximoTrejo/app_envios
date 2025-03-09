@@ -23,6 +23,16 @@ body {
     font-size: 14px;
 }
 
+.submenu {
+    padding-left: 40px;
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
 .sidebar a:hover {
     background: #2c3e50;
 }
