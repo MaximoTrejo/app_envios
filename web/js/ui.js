@@ -95,6 +95,7 @@ class UI {
             const celdaSinDatos = document.createElement('td');
             celdaSinDatos.colSpan = 7; // Asegurar que cubre todas las columnas
             celdaSinDatos.textContent = 'Sin datos';
+            celdaSinDatos.classList.add('sin-datos');
             fila.appendChild(celdaSinDatos);
             tablaOrden.appendChild(fila);
             return;
@@ -131,8 +132,8 @@ class UI {
             // Crea la celda para el botón "Ver Envío"
             const accionesCelda = document.createElement('td');
             const verEnvioButton = document.createElement('button');
-            verEnvioButton.textContent = 'Ver Envío';
-            verEnvioButton.classList.add('btn', 'btn-info');
+            verEnvioButton.textContent = 'Ver Envíos';
+            verEnvioButton.classList.add('btn-ver-envios');
     
             // Si json.length === 0, deshabilitar el botón
             verEnvioButton.disabled = json.length === 0;

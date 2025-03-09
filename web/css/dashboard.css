@@ -114,6 +114,31 @@ body {
     transition: background 0.3s;
 }
 
+/* Estilos para el botón "Ver Envíos" */
+.btn-ver-envios {
+    background: #5d9cec;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 13px;
+}
+
+.btn-ver-envios:hover {
+    background: #4a89dc;
+}
+
+/* Estilos para la fila "Sin datos" */
+.sin-datos {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #7a7a7a;
+    padding: 15px;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .sidebar {
