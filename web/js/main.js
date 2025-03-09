@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         try {
+            const detallesPublicaciones = null;
             const idPublicaciones = await ObtenerIDpublicaciones(accessToken, id_vendedor);
             console.log("ID de publicaciones obtenidas:", idPublicaciones);
 
