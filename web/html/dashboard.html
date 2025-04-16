@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedidos</title>
+    <title>Pedidos y Envíos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-   <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -37,20 +37,51 @@
             <input type="text" id="buscador-codigo" class="search-box" placeholder="Ingresa el ID de envío">
             <button id="buscar-envio" class="search-button">Buscar</button>
         </div>
-        <table class="custom-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Comprador</th>
-                    <th>Artículo</th>
-                    <th>ID Envío</th>
-                    <th>Estado</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tabla-orden"></tbody>
-        </table>
+        
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="pedidoEnvioTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pedidos-tab" data-bs-toggle="tab" data-bs-target="#pedidos" type="button" role="tab">Pedidos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="envios-tab" data-bs-toggle="tab" data-bs-target="#envios" type="button" role="tab">Envíos</button>
+            </li>
+        </ul>
+        
+        <!-- Tab Content -->
+        <div class="tab-content" id="pedidoEnvioContent">
+            <div class="tab-pane fade show active" id="pedidos" role="tabpanel">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Comprador</th>
+                            <th>Artículo</th>
+                            <th>ID Envío</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-pedidos"></tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="envios" role="tabpanel">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Transportista</th>
+                            <th>Destino</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-envios"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>

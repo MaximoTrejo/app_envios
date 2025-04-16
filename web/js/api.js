@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 export async function obtenerOrdenPorId(accessToken, orden_id) {
-    const url = `http://localhost:666/ordenes/orders?orden_id=${orden_id}&access_token=${accessToken}`;
+    const baseUrl = process.env.API_ML_URL_ORDEN;
+    const url = `${baseUrl}?orden_id=${orden_id}&access_token=${accessToken}`;
     
     console.log("URL de la petición:", url);
 
@@ -26,8 +29,8 @@ export async function obtenerOrdenPorId(accessToken, orden_id) {
 }
 
 export async function ObtenerOrdenes(accessToken, vendedor_id) {
-
-    const url =`http://localhost:666/ordenes/ObtenerOrdenes?verdedor_id=${vendedor_id}&access_token=${accessToken}`;
+    const baseUrl = process.env.API_ML_URL_ORDENES;
+    const url =`${baseUrl}?verdedor_id=${vendedor_id}&access_token=${accessToken}`;
     
     
     console.log("URL de la petición:", url);

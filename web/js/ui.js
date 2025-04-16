@@ -1,5 +1,5 @@
-// En archivo ui.js o como prefieras nombrarlo
 class UI {
+    
     static mostrarEnviosEnTabla(envios) {
         const tabla = document.getElementById("tabla-envios");
         tabla.innerHTML = ""; // Limpiar la tabla antes de agregar nuevos datos

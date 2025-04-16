@@ -1,39 +1,24 @@
 export async function obtenerToken(code) {
-    let token = localStorage.getItem('access_token');
-    let refreshToken = localStorage.getItem('refresh_token');
-    let tokenAcquiredTime = localStorage.getItem('token_acquired_time'); // Guardamos el momento en que se adquirió el token
-
-    if (token && tokenAcquiredTime) {
-        // Verificar si el token ha expirado (6 horas = 21600 segundos)
-        let elapsedTime = (Date.now() - tokenAcquiredTime) / 1000; // Tiempo en segundos desde que se obtuvo el token
-        if (elapsedTime < 21600) {
-            return token; // El token sigue siendo válido
+    
+    let Token_refresh = await refrescarToken();
+    if (Token_refresh) {
+        return Token_refresh;
+    }else{
+        console.error("Error en refrescar token", error);
+        let Token_nuevo = await obtenerNuevoToken(code);
+        if(Token_nuevo){
+            return Token_nuevo;
+        }else{
+            console.error("Error al obtener un nuevo token:", error);
         }
     }
 
-    console.log("Token no encontrado o expirado, redirigiendo al proceso de autenticación.");
-
-    if (refreshToken) {
-        // Si el refresh token está disponible, intenta refrescar el token
-        let nuevoToken = await refrescarToken(refreshToken);
-        if (nuevoToken) {
-            return nuevoToken;
-        }
-    }
-
-    // Si no hay token o refresh token, obtener uno nuevo usando el código de autorización
-    try {
-        let nuevoToken = await obtenerNuevoToken(code); // Pasamos el código de autorización como parámetro
-        return nuevoToken;
-    } catch (error) {
-        console.error("Error al obtener un nuevo token:", error);
-        return null;
-    }
 }
 
-export async function refrescarToken(refreshToken) {
-    try {
-        let response = await fetch('http://localhost:666/token/refrescarToken', {
+export async function refrescarToken() {
+
+    url = API_ML_URL + API_CONTROL_URL_CREAR_TOKEN;
+        let response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,23 +29,20 @@ export async function refrescarToken(refreshToken) {
         });
 
         if (response.ok) {
-            let data = await response.json();
-            localStorage.setItem('access_token', data.access_token);
-            localStorage.setItem('refresh_token', data.refresh_token);
-            localStorage.setItem('token_acquired_time', Date.now()); // Guardamos el momento de adquisición del token
+            console.error('Se refresco el token');
             return data.access_token;
         } else {
             console.error('Error al refrescar el token');
             return null;
         }
-    } catch (error) {
-        console.error('Error en la solicitud de refresco de token', error);
-        return null;
-    }
+    
 }
 
 export async function obtenerNuevoToken(code) {
-    const response = await fetch("http://localhost:666/token/obtenerToken", {
+
+    url = API_ML_URL + API_CONTROL_URL_CREAR_TOKEN;
+
+    let response = await fetch(url, {
         method: "POST",  
         headers: {
             "Content-Type": "application/json" 
@@ -70,11 +52,7 @@ export async function obtenerNuevoToken(code) {
 
 
     if (response.ok) {
-        const data = await response.json();
-
-        localStorage.setItem('access_token', data.access_token);
-        localStorage.setItem('refresh_token', data.refresh_token);
-        localStorage.setItem('token_acquired_time', Date.now()); 
+        console.error('Se creo el token');
         return data.access_token;  
     } else {
         const errorData = await response.json();

@@ -7,24 +7,19 @@ document.addEventListener("DOMContentLoaded", async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');  
     
-    let accessToken = await obtenerToken(code);  // Pasamos el `code` directamente a la función
-    
+    let accessToken = await obtenerToken(code);  
     console.log("Token obtenido:", accessToken);
     
     if (!accessToken) {
-        console.log("Token no encontrado o expirado, obteniendo uno nuevo...");
-    
-        if (!code) {
-            alert("Se necesita un código de autorización para obtener un nuevo token.");
-            return;
-        }
-        accessToken = await obtenerToken(code);  
+        console.log("Token no encontrado o expirado, obteniendo uno nuevo..."); 
     }
     
     console.log("Token final:", accessToken);
 
+    //--------------------------------------------------------------------------------------
+    //otros botones 
     try {
-        const id_vendedor = await ObtenerIdVendedor(accessToken); // Asegúrate de pasar accessToken si es necesario
+        const id_vendedor = await ObtenerIdVendedor(accessToken);
         console.log("ID del vendedor obtenido:", id_vendedor);
 
         if (!id_vendedor) {
