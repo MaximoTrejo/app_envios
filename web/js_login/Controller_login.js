@@ -1,8 +1,9 @@
-require('dotenv').config({ path: '../redireccionamiento.env' });
+import {config} from "dotenv";
+config({ path: '../redireccionamiento.env' });
 
 export async function login(usuario, clave ) {
 
-    url = API_CONTROL_URL + API_CONTROL_URL_LOGIN;
+    url = process.env.API_CONTROL_URL + process.env.API_CONTROL_URL_LOGIN;
 
     try {
         const response = await fetch(url, {
@@ -22,8 +23,8 @@ export async function login(usuario, clave ) {
             else localStorage.removeItem("email");
 
             // Redirigir a la autenticación de Mercado Libre
-            const clientId = CLIENT_ID;
-            const redirectUri = URL_REDIRECCIONAMIENTO_ML;
+            const clientId = process.env.CLIENT_ID;
+            const redirectUri = process.env.URL_REDIRECCIONAMIENTO_ML;
             //encodeURIComponent("https://maximotrejo.github.io/app_envios/web/html/dashboard.html");
             window.location.href = `https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}`;
         } else {

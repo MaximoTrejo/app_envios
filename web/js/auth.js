@@ -1,4 +1,5 @@
-require('dotenv').config();
+import {config} from "dotenv";
+config({ path: '../config.env' });
 
 export async function obtenerToken(code) {
     
@@ -19,7 +20,7 @@ export async function obtenerToken(code) {
 
 export async function refrescarToken() {
 
-    url = API_ML_URL + API_CONTROL_URL_CREAR_TOKEN;
+    url = process.env.API_ML_URL + process.env.API_CONTROL_URL_CREAR_TOKEN;
         let response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -42,7 +43,7 @@ export async function refrescarToken() {
 
 export async function obtenerNuevoToken(code) {
 
-    url = API_ML_URL + API_CONTROL_URL_CREAR_TOKEN;
+    url = process.env.API_ML_URL + process.env.API_CONTROL_URL_CREAR_TOKEN;
 
     let response = await fetch(url, {
         method: "POST",  
