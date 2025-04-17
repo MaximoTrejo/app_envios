@@ -1,8 +1,7 @@
-require('dotenv').config();
-
+require('dotenv').config({ path: '../redireccionamiento.env' });
 
 export async function login(usuario, clave ) {
-    
+
     url = API_CONTROL_URL + API_CONTROL_URL_LOGIN;
 
     try {
