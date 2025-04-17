@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../redireccionamiento.env' });
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
