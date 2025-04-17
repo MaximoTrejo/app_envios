@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 export async function obtenerOrdenPorId(accessToken, orden_id) {
     const baseUrl = process.env.API_ML_URL_ORDEN;
     const url = `${baseUrl}?orden_id=${orden_id}&access_token=${accessToken}`;
