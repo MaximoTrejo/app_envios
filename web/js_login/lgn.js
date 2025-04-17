@@ -21,8 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        url = API_CONTROL_URL + API_CONTROL_URL_LOGIN;
+
         try {
-            const response = await fetch("http://localhost:667/login", {
+            const response = await fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ usuario, clave })
@@ -39,8 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 else localStorage.removeItem("email");
 
                 // Redirigir a la autenticación de Mercado Libre
-                const clientId = "5174586942693408";
-                const redirectUri = encodeURIComponent("https://maximotrejo.github.io/app_envios/web/html/dashboard.html");
+                const clientId = CLIENT_ID;
+                const redirectUri = URL_REDIRECCIONAMIENTO_ML;
+                //encodeURIComponent("https://maximotrejo.github.io/app_envios/web/html/dashboard.html");
                 window.location.href = `https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}`;
             } else {
                 alert("Credenciales incorrectas. Inténtalo de nuevo.");
