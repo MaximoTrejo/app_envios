@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 export async function obtenerToken(code) {
     
     let Token_refresh = await refrescarToken();

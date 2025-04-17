@@ -1,7 +1,6 @@
 import {obtenerToken} from './auth.js'; 
 import {obtenerOrdenPorId,ObtenerIdVendedor,ObtenerIDpublicaciones,ObtenerDetallePublicaciones} from './api.js'; 
 import UI from './ui.js';  
-require('dotenv').config();
 
 document.addEventListener("DOMContentLoaded", async function () {
 
