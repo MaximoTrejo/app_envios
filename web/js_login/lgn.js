@@ -1,4 +1,4 @@
-import {login} from './js.js'; 
+import {login} from './Controller_login.js'; 
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
@@ -7,9 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const rememberMe = document.getElementById("rememberMe");
 
     loginForm.addEventListener("submit", async (event) => {
-        
-        login(emailInput,passwordInput);
+        event.preventDefault();
 
-        
-    });
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        const remember = rememberMe.checked;
+
+        if (!email || !password) {
+            alert("Por favor, ingresa tus credenciales.");
+            return;
+        }
+
+        await login(email, password, remember);
+    });    
 });

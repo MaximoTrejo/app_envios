@@ -3,11 +3,6 @@ require('dotenv').config();
 
 export async function login(usuario, clave ) {
     
-    if (!usuario || !clave) {
-        alert("Por favor, ingresa tus credenciales.");
-        return;
-    }
-
     url = API_CONTROL_URL + API_CONTROL_URL_LOGIN;
 
     try {
